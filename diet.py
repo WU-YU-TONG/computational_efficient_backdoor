@@ -12,7 +12,7 @@ from eval import eval_troj, eval_pointcloud
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-diet_mode', type=str, default='el2n')
+    parser.add_argument('-diet_mode', type=str, default='RD_SCORE')
     parser.add_argument('-task', type=str, default='image')
     parser.add_argument('-repeat', type=int, default=30)
     parser.add_argument('-epoch', type=int, default=50)
@@ -83,7 +83,7 @@ if __name__ == '__main__':
                 elif args.diet_mode == 'grad':
                     troj_list = GS(args, troj_list, out_list, grad_scoring)
                 else:
-                    troj_list = GS(args, troj_list, out_list, el2n_scoring)
+                    troj_list = GS(args, troj_list, out_list, RD_scoring)
                 print(f'{len(troj_list)} final trojed data')
                 compose_troj_data(args, troj_list)
                 model = get_network_assmb(args.model_name, args)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                 elif args.diet_mode == 'grad':
                     troj_list = GS(args, troj_list, out_list, grad_scoring)
                 else:
-                    troj_list = GS(args, troj_list, out_list, el2n_point)
+                    troj_list = GS(args, troj_list, out_list, RD_point)
                 print(f'{len(troj_list)} final trojed data')
                 model = importlib.import_module(args.point_model)
                 net = model.get_model()

@@ -104,6 +104,7 @@ def GS(args, troj_list, out_list, method):
         out_list = [i for i in out_list if i not in add_list]
         out_list.extend(diet_list)
         troj_list.extend(add_list)
+        arg.ratio *= arg.decay
         if args.task == 'image':
             compose_troj_data(args, troj_list)
     
